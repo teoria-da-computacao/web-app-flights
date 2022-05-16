@@ -25,14 +25,15 @@ class Flight(models.Model):
         )
 
     def __str__(self):
-        return f'Flight {self.pk}: from {self.origin} to {self.destination}'
+        return f'Flight {self.pk}: {self.origin} to {self.destination}'
 
 
 class Passenger(models.Model):
     name = models.CharField(max_length=50)
     age = models.IntegerField()
-    flights = models.ManyToManyField(Flight)
+    flights = models.ManyToManyField(Flight, related_name='passengers')
 
     def __str__(self):
         return f'{self.name} ({self.age})'
+    
     
